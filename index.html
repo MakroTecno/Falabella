@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- 
+	PROYECTO CREADO POR MAKROTECNO S.A
+	ESTRUCTURADO EN HTML Y CSS
+	www.makrotecno.dx.am
+	DIOS BENDIGA ESTE PROYECTO!
+	-->
+	<title>Simulador</title>
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="estilos.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<script type="text/javascript" src="jquery-3.4.1.min.js"></script>
+	<link rel="icon" href="favicon.ico"/>
+</head>
+<div class="container-fluid">
+	<div class="row justify-content-center">
+		<div class="col-6">
+			<img src="logofalabella.png" class="imgfala">
+		</div>
+		<div class="col-6">
+			<h2>Simulador Credito de Consumo 2020 Rediferidos</h2>
+		</div>
+		<div class="col-12 alert alert-success" role="alert">
+			<small>*Nota 1 : La precisión de los resultados arrojados por el simulador depende del registro cuidadoso de los datos ingresados, sin embargo se debe aclarar al cliente que los datos que se le están informando son aproximados.</small><br>
+			<small>*Nota 2 : Por favor, recargar el navegador (F5) cada vez que realices un proceso nuevo.</small><br>
+			<small>*Nota 3 : En los campos indicados solo se permite numeros.</small>
+		</div>
+		 <table class="table table-bordered infoprincipal">
+		  <tbody>
+		    <tr>
+		      <td>*Monto Credito:</td>
+		      <td><input type="number" id="montocredito" required="" placeholder="Ej: 11000000"></td>
+		      <td>Fecha de Desembolso:</td>
+		      <td><input type="date" id="fechadesembolso"></td>
+		      <td>Convertidor de Tasas</td>
+		      <td></td>
+		      <td>Observación Contacto Inforservicio 963</td>
+		    </tr>
+		    <tr>
+		      <td>*Nro. de Cuotas:</td>
+		      <td><input type="number" id="cuotas" required></td>
+		      <td>Fecha última cuota:</td>
+		      <td><input type="date" id="fechaultimacuota" readonly=""></td>
+		      <td>Tasa Nominal Anual</td>
+		      <td><input type="number" id="tna" readonly=""></td>
+		      <td><input type="text" readonly="" id="info"></td>
+		    </tr>
+		    <tr>
+		      <td>*Tasa Nominal Mensual:</td>
+		      <td><input type="number" id="tasaNominalMensual" required="" placeholder="Ej: 2.1, 0.05 etc."></td>
+		      <td>Base de Calculo:</td>
+		      <td><input type="number" id="basecalculo" readonly="" value="365"></td>
+		      <td>Tasa Efectiva Anual</td>
+		      <td><input type="number" id="tea" readonly=""></td>
+		    </tr>
+		    <tr>
+		      <td>*Proxima Facturacion TDC:</td>
+		      <td><input type="Date" id="proxfact" required></td>
+		      <td>Valor Cuota sin deudores:</td>
+		      <td><input type="number" id="valorsindeudores" readonly=""></td>
+		      <td>Tasa Nominal Diaria (TND)</td>
+		      <td><input type="number" id="tnd" readonly=""></td>
+		    </tr>
+		    <tr>
+		      <td>Fecha 1er cuota Credito:</td>
+		      <td><input type="date" name="primercuota" readonly="" id="primercuota"></td>
+		      <td id="valorCuotaAInformar">Valor Cuota a informar:</td>
+		      <td><input type="number" name="valorcuota" readonly="" id="cuotaInformar"></td>
+		      <td>Tasa Seguro Mensual</td>
+		      <td><input type="number" id="tsm" readonly="" value="0.0735"></td>
+		    </tr>
+		  </tbody>
+		</table>
+	</div>
+</div>
+<div class="procesosCuentas">
+		<div>
+			<p class="titulo"># de Cuotas</p>
+			<input type="number" readonly="" value="0">
+			<div id="resultado"></div>
+		</div>
+		<div>
+			<p class="titulo">Fecha Inicio</p>
+			<input type="number" readonly="">
+			<input type="Date" id="cuotainicio" readonly="">
+			<div id="listafechasinicio"></div>
+		</div>
+		<div>
+			<p class="titulo">Fecha Fin</p>
+			<input type="number" readonly="">
+			<input type="date" readonly="" id="cuotavencimiento">
+			<div id="listafechasfin"></div>
+		</div>
+		<div>
+			<p class="titulo">Dias</p>
+			<input type="number" readonly="">
+			<input type="number" readonly="" id="diainicial">
+			<div id="dias"></div>
+		</div>
+		<div>
+			<p class="titulo">Capital</p>
+			<input type="number" readonly="">
+			<input type="number" readonly="" id="capitalInicial">
+			<div id="capital"></div>
+		</div>
+		<div>
+			<p class="titulo">Intereses</p>
+			<input type="number" readonly="">
+			<input type="number" readonly="" id="interesInicial">
+			<div id="intereses"></div>
+		</div>
+		<div>
+			<p class="titulo">Cuota</p>
+			<input type="number" readonly="">
+			<input type="number" readonly="" id="cuotaInicial">
+			<div id="cuota"></div>
+		</div>
+		<div>
+			<p class="titulo">Saldo</p>
+			<input type="number" readonly="" id="SaldoInicial">
+			<input type="number" readonly="" id="saldoInicial2">
+			<div id="saldo"></div>
+		</div>
+		<!--<div>
+			<p class="titulo">Tasa Periodo</p>
+			<input type="number" readonly="">
+			<input type="number" readonly="" id="tasaPeriodoInicial">
+			<div id="tasaPeriodoGeneral"></div>
+		</div>
+		<div>
+			<p class="titulo">Interes Activo</p>
+			<input type="number" readonly="">
+			<input type="number" readonly="" id="interesActivoInicial">
+			<div id="interesActivoGeneral"></div>
+		</div>
+		<div>
+			<p class="titulo">Factor Actualizacion</p>
+			<input type="number" readonly="">
+			<input type="number" readonly="" id="faInicial">
+			<div id="factorActualizacionGeneral"></div>
+		</div>-->
+		<div>
+			<p class="titulo">Seguro Deudor</p>
+			<input type="number" readonly="">
+			<input type="number" readonly="" id="seguroinicial">
+			<div id="sd"></div>
+		</div>
+		<div>
+			<p class="titulo">Total Cuota</p>
+			<input type="number" readonly="" id="nada">
+			<input type="number" readonly="" id="totalCuotaInicial">
+			<div id="totalcuota"></div>
+		</div>
+</div><br>
+<div class="container">
+	<div class="row">
+		<div class="col-12">
+			<small>Antes de presionar el boton "Simular", por favor completar los datos con (*)</small><br>
+			<button type="button" class="btn btn-primary" id="registro">Simular</button>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="scripts.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+</body>
+</html>
